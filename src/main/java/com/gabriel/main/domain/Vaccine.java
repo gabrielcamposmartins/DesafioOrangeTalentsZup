@@ -26,6 +26,11 @@ public class Vaccine implements Serializable{
 		this.name = name;
 		this.date = date;
 	}
+	
+	public Vaccine(String name, LocalDate date) {
+		this.name = name;
+		this.date = date;
+	}
 
 	public int getId() {
 		return id;

@@ -39,6 +39,13 @@ public class User implements Serializable {
 	public User() {
 	}
 
+	public User(String cpf, String email, String name, LocalDate birth) {
+		this.cpf = cpf;
+		this.email = email;
+		this.name = name;
+		this.birth = birth;
+	}
+
 	public User(long id, String cpf, String email, String name, LocalDate birth, List<Vaccine> vaccines) {
 		super();
 		this.id = id;
