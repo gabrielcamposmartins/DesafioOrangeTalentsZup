@@ -77,4 +77,11 @@ public class Vaccine implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Vaccine [id=" + id + ", name=" + name + ", date=" + date + "]";
+	}
+	
+	
 }

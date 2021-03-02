@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,9 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"cpf", "email"}))
+@Table(uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"cpf"}), 
+		@UniqueConstraint(columnNames = {"email"})})
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -32,7 +35,7 @@ public class User implements Serializable {
 	private String name;
 	private LocalDate birth;
 
-	@OneToMany
+	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "user_id", nullable = false)
 	List<Vaccine> vaccines = new ArrayList<>();
 
@@ -102,6 +105,10 @@ public class User implements Serializable {
 
 	public void setVaccines(List<Vaccine> vaccines) {
 		this.vaccines = vaccines;
+	}
+	
+	public void addVaccine(Vaccine vaccine) {
+		this.vaccines.add(vaccine);
 	}
 
 	@Override
